@@ -1,0 +1,175 @@
+<!doctype html>
+<html>
+<head>
+  <title>Forum home</title>
+  <link rel="stylesheet" href="css/home.css">
+
+  <script src="./js/home.js">
+
+  
+  </script>
+
+</head>
+
+<body>
+ 
+  <div id = "titre" >Forum</div>
+  <div id = "deconnexion">
+    <form action="/deconnexion" method="post"
+    >
+  <input type="submit" value="deconnexion" class="bouton">
+  </form>
+  </div>
+  <div id = "recherche">
+    <form id="" action="/recherche" method="POST">
+  
+  
+
+
+      <label for="filtre" class="texte">Filtrer par catégorie :</label>
+      <input type="checkbox" name="filtreCategorie[]" value="Sport" id="Sport">
+      <label for="Sport">Sport</label>
+      <input type="checkbox" name="filtreCategorie[]" value="Musique" id="Musique">
+      <label for="Musique">Musique</label>
+      <input type="checkbox" name="filtreCategorie[]" value="Divers" id="Divers">
+      <label for="Divers">Divers</label>
+      <input type="checkbox" name="filtreCategorie[]" value="mesMessages" id="mesMessages">
+      <label for="mesMessages">Mes messages</label>
+      <input type="checkbox" name="filtreCategorie[]" value="mesLikes" id="mesLikes">
+      <label for="mesLikes">Mes likes</label>
+    </div>
+    <input type="submit" id="boutonRecherche" value="Rechercher" class="bouton">
+  </form>
+  <div id = "essai"></div>
+  <ul class="menu">
+    <li>
+      <a href="/home" class="actif">Accueil</a>
+    </li>
+    <li>
+      <a href="/formMessage" class="actif">Rediger message</a>
+    </li>
+    <li>
+      {{if or (eq .Role "user") (eq .Role "modo")}}
+      <a href="/admin" class="actif">contactAdmin</a>
+    {{end}}
+    
+    {{if eq .Role "admin"}}
+    <li>
+    <a href="/maintenance" class="actif">Maintenance</a>
+    </li>
+    {{end}}
+    <li>
+      <a href="/activite" class="actif">Activite</a>
+    </li>
+  </ul>
+ 
+
+  
+
+<div id = "divConnexion">
+<form id="formConnexion" action="/connexion" method="post">
+ 
+
+<div class="texte">Veuillez vous connecter :</div>
+<p>
+<textarea id ="pseudo" name="pseudo" action="" method="POST"  rows="2" cols="30" placeholder="Identifiant :"></textarea>
+</p>
+
+<p>
+
+<textarea id ="mdp" name="mdp" action="" method="POST"  rows="2" cols="30" placeholder="Mot de passe :"></textarea>
+</p>
+
+<input type="submit" value="connexion" id="butcon" class="bouton">
+
+</form>
+<form action="/login" method="post"
+  >
+<input type="submit" value="google" class="bouton">
+</form>
+<form action="/loginGit" method="post"
+  >
+  &nbsp;&nbsp;&nbsp;<input type="submit" value="github" class="bouton">
+</form>
+<div id="reponseDemande"></div>
+
+<div id="inscription">
+<form id = "" action="/inscription" method="post">
+<div class="texte" >Pas encore inscrit? Cliquez pour vous enregistrer :</div>
+<input id = "boutInscription"type="submit" value="valider" class="bouton">
+
+
+</form>
+
+</div>
+</div>
+
+<div id = "titreMess" >   <a href="/home" class="actif">Consultez les derniers messages :</a> </div>
+
+<br>
+<div id="user">{{.User}}</div>
+<div id="notif">Vous avez {{.CountNotif}} notifications&nbsp;&nbsp;<button id="affNotif"class="notifs">Afficher</button><button id="fermerNotif">fermer</button>
+ <div id="divNotifs"></div>
+</div>
+
+
+
+<div id="autorise">{{.Autorisation}}</div>
+
+{{if eq .Role "user"}}
+<div id = "mess">{{range.Posts}}<br>{{.}}<br>{{end}}</div>
+<div id = "idMessHome">{{range.Id}}<br><a href="/messagesInd?id={{.}}">Voir</a><br>{{end}}</div>
+
+
+{{end}}
+
+
+
+
+{{if eq .Role "admin"}}
+<div id = "titreMessAppr" >Messages approuves </div>
+<div id = "mess">{{range.Posts}}<br>{{.}}<br>{{end}}</div>
+<div id = "idMessHome">{{range.Id}}<br><a href="/messagesInd?id={{.}}">Voir</a>&nbsp;&nbsp;&nbsp;&nbsp;<button class="supprMess" data-id="{{.}}">Supprimer</button>&nbsp;&nbsp;<button id="boutonApprouver"class="approuverMess" data-id="{{.}}">Approuver</button><br>{{end}}</div>
+<div id = "signalement">{{range.Signalement}}<br>{{if eq . "true"}}message signale par un modo{{end}}<br>{{end}}</div>
+<div id = "messAppr">{{range.PostsAppr}}<br>{{.}}<br>{{end}}</div>
+<div id = "idMessHomeAppr">{{range.IdAppr}}<br><a href="/messagesInd?id={{.}}">Voir</a><br>{{end}}</div>
+{{end}}
+
+{{if eq .Role "modo"}}
+<div id = "titreMessAppr" >Messages approuves </div>
+<div id = "mess">{{range.Posts}}<br>{{.}}<br>{{end}}</div>
+<div id = "idMessHome">{{range.Id}}<br><a href="/messagesInd?id={{.}}">Voir</a>&nbsp;&nbsp;&nbsp;&nbsp;<button class="supprMess" data-id="{{.}}">Supprimer</button>&nbsp;&nbsp;<button id="boutonSignaler"class="signalerMess" data-id="{{.}}">Signaler</button><br>{{end}}</div>
+<div id = "messAppr">{{range.PostsAppr}}<br>{{.}}<br>{{end}}</div>
+<div id = "idMessHomeAppr">{{range.IdAppr}}<br><a href="/messagesInd?id={{.}}">Voir</a><br>{{end}}</div>
+
+{{end}}
+
+
+
+
+
+
+<form  method="post" action="">
+  <input type="submit" name="pageSuivante" value="suivant" id="boutSuivant">
+  <input type="submit" name="pagePrecedente" value="precedent" id="boutPrecedent">
+</form>
+<div id="nbrePages">{{.Page}}/{{.PageTotale}}</div>
+
+
+{{if or (eq .Role "admin") (eq .Role "modo")}}
+<form  method="post" action="">
+  <input type="submit" name="pageSuivanteAppr" value="suivant" id="boutSuivantAppr">
+  <input type="submit" name="pagePrecedenteAppr" value="precedent" id="boutPrecedentAppr">
+</form>
+
+<div id="nbrePagesAppr">{{.PageAppr}}/{{.PageTotaleAppr}}</div>
+{{end}}
+
+<div id="erreurs">{{.MsgErreur}}</div>
+
+
+
+
+
+</body>
+</html>

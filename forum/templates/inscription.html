@@ -1,0 +1,109 @@
+<head>
+    <title>Forum Inscr</title>
+    <link rel="stylesheet" href="css/home.css">
+  
+  
+  
+  </head>
+  
+  <body>
+  
+    <div id = "titre" >Forum</div>
+    <div id = "deconnexion">
+      <form action="/deconnexion" method="post"
+      >
+    <input type="submit" value="deconnexion" class="bouton">
+    </form>
+    </div>
+    <div id = "recherche">
+      <form id="" action="/recherche" method="POST">
+    
+    
+  
+  
+        <label for="filtre" class="texte">Filtrer par catégorie :</label>
+        <input type="checkbox" name="filtreCategorie[]" value="Sport" id="Sport">
+        <label for="Sport">Sport</label>
+        <input type="checkbox" name="filtreCategorie[]" value="Musique" id="Musique">
+        <label for="Musique">Musique</label>
+        <input type="checkbox" name="filtreCategorie[]" value="Divers" id="Divers">
+        <label for="Divers">Divers</label>
+        <input type="checkbox" name="filtreCategorie[]" value="mesMessages" id="mesMessages">
+        <label for="mesMessages">Mes messages</label>
+        <input type="checkbox" name="filtreCategorie[]" value="mesLikes" id="mesLikes">
+        <label for="mesLikes">Mes likes</label>
+      </div>
+      <input type="submit" id="boutonRecherche" value="Rechercher" class="bouton">
+    </form>
+    <ul class="menu">
+      <li>
+        <a href="/home" class="actif">Accueil</a>
+      </li>
+      <li>
+        <a href="/formMessage">Rediger message</a>
+      </li>
+      <li>
+        <a href="#">A venir</a>
+      </li>
+  
+    </ul>
+  
+  <div id = "divConnexion">
+  <form id="formConnexion" action="/connexion" method="post">
+   
+  
+    <div class="texte">Veuillez vous connecter :</div>
+  <p>
+  <textarea id ="pseudo" name="pseudo" action="" method="POST"  rows="2" cols="30" placeholder="Identifiant :"></textarea>
+  </p>
+  
+  <p>
+  
+  <textarea id ="mdp" name="mdp" action="" method="POST"  rows="2" cols="30" placeholder="Mot de passe :"></textarea>
+  </p>
+  
+  <input type="submit" value="connexion" class="bouton">
+  
+  </form>
+  <form id = "inscription" action="/inscription" method="post">
+    <div class="texte" >Pas encore inscrit? Cliquez pour vous enregistrer :</div>
+  <input id = "boutInscription"type="submit" value="valider" class="bouton" >
+  
+  </div>
+  
+  </form>
+  
+  
+  
+  
+  
+  
+  
+  <div id = "divInscription">
+  <form id="formInscription" action="/inscrit" method="post">
+   
+  
+  <div class="texte">Veuillez vous enregistrer :</div>
+ <br>
+  <textarea id ="pseudoEnr" name="pseudoEnr" action="" method="POST"  rows="2" cols="30" placeholder="Identifiant :"></textarea>
+  </p>
+  <br>
+  <p>
+  <textarea id ="mdpEnr" name="mdpEnr" action="" method="POST"  rows="2" cols="30" placeholder="Mot de passe :"></textarea>
+</p>
+  <br>
+  <p>
+  <textarea id ="mailEnr" name="mailEnr" action="" method="POST"  rows="2" cols="30" placeholder="Mail :"></textarea>
+</p>
+<br>
+  <input type="submit" value="valider" class="bouton">
+
+  </form>
+</div>
+<div id="erreurs">{{.MsgErreur}}</div>
+  
+ 
+  <!-- <script src="./js/main.js"></script> -->
+  
+  </body>
+  </html>

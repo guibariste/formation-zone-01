@@ -1,0 +1,139 @@
+<!doctype html>
+<html>
+<head>
+  <title>Forum home</title>
+  <link rel="stylesheet" href="css/home.css">
+
+
+
+</head>
+
+<body>
+ 
+  <div id = "titre" >Forum</div>
+  <div id = "deconnexion">
+    <form action="/deconnexion" method="post"
+    >
+  <input type="submit" value="deconnexion" class="bouton">
+  </form>
+  </div>
+  <div id="user">{{.User}}</div>
+  <div id = "recherche">
+    <form id="" action="/recherche" method="POST">
+  
+  
+
+
+      <label for="filtre" class="texte">Filtrer par catégorie :</label>
+      <input type="checkbox" name="filtreCategorie[]" value="Sport" id="Sport">
+      <label for="Sport">Sport</label>
+      <input type="checkbox" name="filtreCategorie[]" value="Musique" id="Musique">
+      <label for="Musique">Musique</label>
+      <input type="checkbox" name="filtreCategorie[]" value="Divers" id="Divers">
+      <label for="Divers">Divers</label>
+      <input type="checkbox" name="filtreCategorie[]" value="mesMessages" id="mesMessages">
+      <label for="mesMessages">Mes messages</label>
+      <input type="checkbox" name="filtreCategorie[]" value="mesLikes" id="mesLikes">
+      <label for="mesLikes">Mes likes</label>
+    </div>
+    <input type="submit" id="boutonRecherche" value="Rechercher" class="bouton">
+  </form>
+  <div id = "essai"></div>
+  <ul class="menu">
+    <li>
+      <a href="/home" class="actif">Accueil</a>
+    </li>
+    <li>
+      <a href="/formMessage" class="actif">Rediger message</a>
+    </li>
+    <li>
+      {{if eq .Role "admin"}}
+      <a href="#" class="actif">Maintenance</a>
+    </li>
+{{end}}
+{{if eq .Role "modo"}}
+<a href="#" class="actif">Contact Admin</a>
+</li>
+{{end}}
+  </ul>
+ 
+
+  
+
+<div id = "divConnexion">
+<form id="formConnexion" action="/connexion" method="post">
+ 
+
+<div class="texte">Veuillez vous connecter :</div>
+<p>
+<textarea id ="pseudo" name="pseudo" action="" method="POST"  rows="2" cols="30" placeholder="Identifiant :"></textarea>
+</p>
+
+<p>
+
+<textarea id ="mdp" name="mdp" action="" method="POST"  rows="2" cols="30" placeholder="Mot de passe :"></textarea>
+</p>
+
+<input type="submit" value="connexion" id="butcon" class="bouton">
+
+</form>
+</div>
+<div id="inscription">
+<form id = "" action="/inscription" method="post">
+<div class="texte" >Pas encore inscrit? Cliquez pour vous enregistrer :</div>
+<input id = "boutInscription"type="submit" value="valider" class="bouton">
+
+
+</form>
+
+</div>
+
+
+
+<div id="reponseDemande"></div>
+
+<div id="infosUtilisateur">
+  {{if eq .Role "admin"}}
+  <div class="columne">
+    <div class="column-titles">Pseudos</div>
+   
+    <div class="column-contents">
+      {{range .Pseudos}}
+      {{.}}&nbsp;&nbsp;<button id="acceptDemande" class="accepterDemande" data-pseudo="{{.}}">Accepter</button>&nbsp;&nbsp;<button class="refuserDemande" data-pseudo="{{.}}">Refuser</button><br>
+      {{end}}
+    </div>
+  </div>
+  <div class="columne">
+    <div class="column-titles">Demandes</div>
+    <div class="column-contente">
+      {{range .Demandes}}
+      {{.}}<br>
+      {{end}}
+    </div>
+  </div>
+  {{end}}
+
+  <div class="columne">
+    <div class="column-titles">Roles</div>
+    <div class="column-contente">
+      {{range .PseudoModo}}
+      {{.}}&nbsp;&nbsp;<button id="retrogade" class="retrogader" data-pseudo="{{.}}">Retrogader</button>&nbsp;&nbsp;<br>
+      {{end}}
+    </div>
+  </div>
+
+
+</div>
+  
+  
+  
+  {{if eq .Role "user"}}
+  
+    <div id="role">Role : {{.Role}}&nbsp;&nbsp;<button id="demandeModo">Demande modo</button></div>
+   
+    {{end}}
+
+</div>
+<script src="./js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!doctype html>
+<html>
+<head>
+  <title>Forum home</title>
+  <link rel="stylesheet" href="css/home.css">
+
+
+
+  
+  
+
+</head>
+
+<body>
+ 
+  <div id = "titre" >Forum</div>
+  <div id = "deconnexion">
+    <form action="/deconnexion" method="post"
+    >
+  <input type="submit" value="deconnexion" class="bouton">
+  </form>
+  </div>
+  <div id = "recherche">
+    <form id="" action="/recherche" method="POST">
+  
+  
+
+
+      <label for="filtre" class="texte">Filtrer par catégorie :</label>
+      <input type="checkbox" name="filtreCategorie[]" value="Sport" id="Sport">
+      <label for="Sport">Sport</label>
+      <input type="checkbox" name="filtreCategorie[]" value="Musique" id="Musique">
+      <label for="Musique">Musique</label>
+      <input type="checkbox" name="filtreCategorie[]" value="Divers" id="Divers">
+      <label for="Divers">Divers</label>
+      <input type="checkbox" name="filtreCategorie[]" value="mesMessages" id="mesMessages">
+      <label for="mesMessages">Mes messages</label>
+      <input type="checkbox" name="filtreCategorie[]" value="mesLikes" id="mesLikes">
+      <label for="mesLikes">Mes likes</label>
+    </div>
+    <input type="submit" id="boutonRecherche" value="Rechercher" class="bouton">
+  </form>
+  <div id = "essai"></div>
+  <ul class="menu">
+    <li>
+      <a href="/home" class="actif">Accueil</a>
+    </li>
+    <li>
+      <a href="/formMessage" class="actif">Rediger message</a>
+    </li>
+    <li>
+      {{if or (eq .Role "user") (eq .Role "modo")}}
+      <a href="/contactAdmin" class="actif">contactAdmin</a>
+    </li>
+    {{end}}
+    {{if eq .Role "admin"}}
+    <a href="/maintenance" class="actif">Maintenance</a>
+    {{end}}
+    <li>
+      <a href="/activite" class="actif">Activite</a>
+    </li>
+  </ul>
+ 
+
+  
+
+<div id = "divConnexion">
+<form id="formConnexion" action="/connexion" method="post">
+ 
+
+<div class="texte">Veuillez vous connecter :</div>
+<p>
+<textarea id ="pseudo" name="pseudo" action="" method="POST"  rows="2" cols="30" placeholder="Identifiant :"></textarea>
+</p>
+
+<p>
+
+<textarea id ="mdp" name="mdp" action="" method="POST"  rows="2" cols="30" placeholder="Mot de passe :"></textarea>
+</p>
+
+<input type="submit" value="connexion" id="butcon" class="bouton">
+
+</form>
+<form action="/login" method="post"
+  >
+<input type="submit" value="google" class="bouton">
+</form>
+<form action="/loginGit" method="post"
+  >
+  &nbsp;&nbsp;&nbsp;<input type="submit" value="github" class="bouton">
+</form>
+
+
+<div id="inscription">
+<form id = "" action="/inscription" method="post">
+<div class="texte" >Pas encore inscrit? Cliquez pour vous enregistrer :</div>
+<input id = "boutInscription"type="submit" value="valider" class="bouton">
+
+
+</form>
+
+</div>
+</div>
+<div id="user">{{.User}}</div>
+<div id="infosUtilisateur">
+ 
+  <div class="column">
+    <div class="column-title">Messages</div>
+    <div class="column-content">
+     
+      <div id = "ownIdMess">{{range.IdPost}}<br><a href="/messagesInd?id={{.}}">Voir</a><br>{{end}}</div>
+      <div id = "ownMess">{{range.Posts}}<br>{{.}}<br>{{end}}</div>
+    </div>
+  </div>
+  <div class="column">
+    <div class="column-title">Commentaires</div>
+    <div class="column-content">
+      <div id="ownIdCom">{{range.IdCom}}<br><a href="/messagesInd?id={{.}}">Voir</a><br>{{end}}</div>
+      <div id = "ownMessCom">{{range.Comments}}<br>{{.}}<br>{{end}}</div>
+    </div>
+  </div>
+
+
+  <div class="column">
+    <div class="column-title">likes/dislikes Posts</div>
+    <div class="column-content">
+      <div id="ownIdLike">{{range.IdLike}}<br><a href="/messagesInd?id={{.}}">Voir</a><br>{{end}}</div>
+       <div id = "ownMessLike">{{range.PostsLike}}<br>{{.}}<br>{{end}}</div>
+    </div>
+  </div>
+  <div class="column">
+    <div class="column-title">likes/dislikes commentaires</div>
+    <div class="column-content">
+      <div id="ownIdLikeCom">{{range.IdLikeCom}}<br><a href="/messagesInd?id={{.}}">Voir</a><br>{{end}}</div>
+      <div id = "ownMessLikeCom">{{range.PostsLikeCom}}<br>{{.}}<br>{{end}}</div>
+    </div>
+  </div>
+
+
+</div>
+
+
+
+
+</body>
+</html>
