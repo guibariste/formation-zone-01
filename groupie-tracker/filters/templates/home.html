@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Groupie tracker</title>
+
+  
+  <script  src="/templates/ox.js"></script>
+
+</head>
+<body>
+ 
+   Trier par :<br>
+ Date de creation : <input type="checkbox" id = "bypassCrea">
+ Date 1er Album : <input type="checkbox" id = "bypassFirst"> 
+ Nombre de Membres : <input type="checkbox" id = "bypassMembres"> 
+Ville : <input type="checkbox" id = "bypassVille"> 
+ <br>
+ <br>
+ Choisir un intervalle d'annes de creation :
+ <div>
+
+  <br>
+    <input type="range" name="range" min="1950" value="1980" max="2022"   id="creaRange-" >Min
+  </div>
+  <div id="creaAffRange-"></div>
+  </div>
+  <div> <input type="range" min="1950"value ="1990" max="2022"   id="creaRange+">Max</div> 
+ 
+  <div id="creaAffRange+"></div>
+  <br>
+  Choisir un intervalle d'annees du 1er album :
+  <div>
+    
+    <br>
+      <input type="range" name="range" min="1950" max="2022" value="1972"  id="firstRange-">Min
+    </div>
+    <div id="firstAffRange-"></div>
+    </div>
+    <div> <input type="range" min="1950" max="2022" value="1974"  id="firstRange+">Max</div> 
+   
+    <div id="firstAffRange+"></div>
+
+Membres : 
+1<input type = "checkbox" id = "mbr1" >
+2<input type = "checkbox" id = "mbr2" >
+3<input type = "checkbox" id = "mbr3" >
+4<input type = "checkbox" id = "mbr4" >
+5<input type = "checkbox" id = "mbr5" >
+6<input type = "checkbox" id = "mbr6" >
+7<input type = "checkbox" id = "mbr7" >
+8<input type = "checkbox" id = "mbr8" >
+<br>
+<br>
+
+
+  <select id="selectVille" >
+    <option >ville</option>
+  </select>
+
+<br>
+<br>
+<input type="button" value = "valider" id="bouton" >
+<input type="button" value = "reset" id="reset" >
+
+
+
+
+
+<br>
+<br><br>
+<div id="aff"></div>
+
+<script src="/templates/filter.js"></script>
+ 
+</body>
+</html>
+
+

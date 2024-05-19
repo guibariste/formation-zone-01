@@ -1,0 +1,42 @@
+<html>
+<head>
+  <title>Groupie tracker</title>
+  
+
+
+
+</head>
+<body>
+<p>Groupie</p>
+<br>
+<img height="100" src="{{.ImageAPI}}" alt="img">
+NOM : {{.NameAPI}}
+<br>
+
+1er Album :{{.FirstAlbumAPI}}
+<br>
+{{.CreationDateAPI}}
+<br>
+MEMBRES :{{range.MembersAPI}}
+ {{.}}
+{{end}}
+<br>
+LIEUX :{{range.LocationAPI}}
+{{.}}
+{{end}}
+
+<br>
+DATES :{{range.DateAPI}}
+{{.}}
+{{end}}
+<br>
+
+DATES CONCERTS : {{range $lieu, $date := .RelationAPI}}
+{{$lieu}}
+{{range $date}}
+{{.}}
+{{end}}
+{{end}}
+
+</body>
+</html>

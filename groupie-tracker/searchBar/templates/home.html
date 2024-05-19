@@ -1,0 +1,54 @@
+<html>
+<head>
+  <title>Groupie tracker</title>
+  
+  
+  <script  src="/templates/ox.js"></script>
+
+</head>
+
+
+
+
+ 
+
+<body>
+ 
+ <form id = "recherche" action="/search" method="post" >
+  
+           
+  <textarea id ="search" name="search" action="/search" method="POST"  rows="1" cols="30" placeholder="rechercher :"></textarea> 
+
+<div id="lieu"></div> 
+<div id="groupeLieu"></div>
+<div id="groupeMembre"></div>
+<div id="membre"></div>
+<div id="groupeNom"></div>
+<div id="dateCreation"></div>
+<div id="first"></div>
+<div id="compo"></div>
+
+<input  type="submit" value="valider" >
+
+</form>
+
+
+<br>
+<br>
+
+{{range.}}
+
+<li class="name" >{{.Name}}</li>
+
+
+
+<img height="100" src="{{.Image}}" alt="img">
+<a  href="/infos?id={{.Id}}">Infos</a>
+<br>
+{{end}}
+
+<script src="/templates/recherche.js"></script>
+ 
+</body>
+</html>
+
