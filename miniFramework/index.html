@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/main.css">
+    <title>Todo List</title>
+  </head>
+  <body>
+    <div id="main">
+      <h1>Todo List</h1>
+      <input type="text" class="aFaire" placeholder="What needs to be done?" />
+      <button class="ajoutTache">Add Todo</button>
+      <ul class="Liste"></ul>
+      <footer id ="essai" class="footer">
+        <div class="countAfaire">
+          <div id="count">0</div> 
+          <div>&nbsp;items left.</div>
+        </div>
+        <ul class="filters">
+          <li>
+            <a href="#/" class="all">All</a>
+          </li>
+          <li>
+            <a href="#/active" class="active">Active</a>
+          </li>
+          <li>
+            <a href="#/completed" class="completed">Completed</a>
+          </li>
+        </ul>
+        <button class="clear-completed">Clear completed</button>
+      </footer>
+    </div>
+    <script type="module" src="main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,12 @@
+
+
+#count{
+  font-weight: bold;
+}
+.countAfaire {
+  display: flex;
+  align-items: center;
+}
+#essai{
+  visibility:visible
+}
